@@ -43,7 +43,7 @@ class CategoryController extends Controller
 
         $filds= $request->validated();
 
-        $image = $request->file('image');
+        $image = $request->file('image'); //
         // $imageName=  $image->getClientOriginalName() . '.'.time();
         $imagePath=$image->store('categories','public');
         // $category = new Category();
@@ -110,12 +110,19 @@ class CategoryController extends Controller
     // {
 
 
-    //     // Storage::disk('public')->delete($category->image);
-    //     // @unlink(public_path('storage/'.$category->image));
+        // Storage::disk('public')->delete($category->image);
 
-    //     $category->delete();
-    //     // $category->store()->delete();
-    //     // dd($category->image);
+    // if ($category->image) {
+    //     if (Storage::disk('public')->exists($category->image)) {
+    //         Storage::disk('public')->delete($category->image);
+
+    //     }
+    // }
+        // @unlink(public_path('storage/'.$category->image));
+
+        // $category->delete();
+        // $category->store()->delete();
+        // dd($category->image);
 
     //     return redirect()->route('category.index')
     //     ->with('success', 'Category Deleted Successfully.');

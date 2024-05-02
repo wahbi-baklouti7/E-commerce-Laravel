@@ -20,8 +20,8 @@
         @csrf
         <div class="card-body">
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+            <label for="email">Email address</label>
+            <input type="email" value="{{ old('email') }}" name="email" class="form-control" id="email" placeholder="Enter email">
             @error('email')
             <small class="text-danger">{{ $message }}</small>
             @enderror
@@ -34,7 +34,7 @@
             <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
-          
+
         </div>
         <!-- /.card-body -->
         <div class="card-footer">

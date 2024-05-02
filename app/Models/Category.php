@@ -37,4 +37,9 @@ class Category extends Model
 
         return $this->image == null;
     }
+
+    protected function getWahbiAttribute(){
+
+        return $this->products->count() . "wahbi";
+    }
 }

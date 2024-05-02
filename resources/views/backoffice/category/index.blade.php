@@ -6,17 +6,8 @@
 
 @section('content')
 
-{{-- @if (session('success'))
-
-<div class="alert alert-success alert-dismissible">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-    <h5><i class="icon fas fa-check"></i>  {{ session('success') }}</h5>
-
-</div>
 
 
-
-@endif --}}
 <div class=" d-flex justify-content-end  mb-3">
     <a href="{{ route('category.create') }}" class="btn btn-primary text-end"> <i class="fas fa-plus"></i> Add Category</a>
 </div>
@@ -43,6 +34,7 @@
 
 <tr class="text-center" data-id="{{ $category->id }}">
   <td>{{ $category->name }}</td>
+  {{-- <td>{{ $category->wahbi }}</td> --}}
   <td><img src="{{ asset('storage/'.$category->image) }}" width="80px" alt="{{ $category->name }}"></td>
   <td>{{ $category->created_at }}</td>
   <td>

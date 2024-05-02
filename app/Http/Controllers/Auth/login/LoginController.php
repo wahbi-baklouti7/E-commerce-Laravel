@@ -26,6 +26,9 @@ class LoginController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('dashboard');
         }
+        else{
+            return back()->withInput($request->only('email'))->with('error', 'Email or password is incorrect');
+        }
     }
 
 
