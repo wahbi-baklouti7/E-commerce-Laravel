@@ -21,9 +21,9 @@ class EditProductRequest extends FormRequest
      */
     public function rules(): array
     {
-        // dd($this->product->id);
+        // dd($this);
         return [
-            'name' => 'required | min:3 |unique:products,name,'.$this->product->id,
+            'name' => 'required | min:3 |unique:products'.$this->product->id,
             // 'name' => 'required | min:3 |unique:products,name',
             'price'=>' numeric | min:0',
             'description'=>'',

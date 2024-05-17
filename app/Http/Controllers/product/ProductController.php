@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 use function PHPUnit\Framework\fileExists;
@@ -22,6 +23,7 @@ class ProductController extends Controller
     {
         //
 
+        // DB::table('products')->delete();
         $products= Product::all();
 
         return view('backoffice.product.index',compact('products'));
@@ -34,6 +36,8 @@ class ProductController extends Controller
     {
 
         $categories = Category::all();
+
+
         // dd($categories);
         return view('backoffice.product.create' ,compact('categories'));
     }
@@ -133,11 +137,11 @@ class ProductController extends Controller
 
 
 
-        if(file_exists(public_path('storage/products/'.$image))){
+        // if(file_exists(public_path('storage/products/'.$image))){
 
-            Storage::disk('public')->delete("products/".$image);
+        //     Storage::disk('public')->delete("products/".$image);
           $result=   $product->delete();
-        }
+        // }
 
 
         if($result){
@@ -160,5 +164,13 @@ class ProductController extends Controller
         // return back()->with('success','Product deleted successfully');
 
 
+    }
+
+
+    public function destroyAll(){
+
+        // dd('hello');
+        Product::truncate();
+        return back()->with('success','All products deleted successfully');
     }
 }
