@@ -5,6 +5,7 @@
 @section('breadcrumbTitle','Cart')
 @section('content')
 
+{{-- @dd($cartItems) --}}
 {{-- <x-breadcrumb text="Cart"/> --}}
 <div class="cart-main-area pt-90 pb-100">
     <div class="container">
@@ -13,7 +14,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <form action="#">
                     <div class="table-content table-responsive cart-table-content">
-                        <table>
+                        <table >
                             <thead>
                                 <tr>
                                     <th>Image</th>
@@ -24,58 +25,38 @@
                                     <th>action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="product-thumbnail">
-                                        <a href="#"><img src="assets/img/cart/cart-1.png" alt=""></a>
-                                    </td>
-                                    <td class="product-name"><a href="#">Product Name</a></td>
-                                    <td class="product-price-cart"><span class="amount">$260.00</span></td>
-                                    <td class="product-quantity">
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="2">
-                                        </div>
-                                    </td>
-                                    <td class="product-subtotal">$110.00</td>
-                                    <td class="product-remove">
-                                        <a href="#"><i class="fa fa-pencil"></i></a>
-                                        <a href="#"><i class="fa fa-times"></i></a>
-                                   </td>
-                                </tr>
-                                <tr>
-                                    <td class="product-thumbnail">
-                                        <a href="#"><img src="assets/img/cart/cart-2.png" alt=""></a>
-                                    </td>
-                                    <td class="product-name"><a href="#">Product Name</a></td>
-                                    <td class="product-price-cart"><span class="amount">$150.00</span></td>
-                                    <td class="product-quantity">
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="2">
-                                        </div>
-                                    </td>
-                                    <td class="product-subtotal">$150.00</td>
-                                    <td class="product-remove">
-                                        <a href="#"><i class="fa fa-pencil"></i></a>
-                                        <a href="#"><i class="fa fa-times"></i></a>
-                                   </td>
-                                </tr>
-                                <tr>
-                                    <td class="product-thumbnail">
-                                        <a href="#"><img src="assets/img/cart/cart-1.png" alt=""></a>
-                                    </td>
-                                    <td class="product-name"><a href="#">Product Name </a></td>
-                                    <td class="product-price-cart"><span class="amount">$170.00</span></td>
-                                    <td class="product-quantity">
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="2">
-                                        </div>
-                                    </td>
-                                    <td class="product-subtotal">$170.00</td>
-                                    <td class="product-remove">
-                                        <a href="#"><i class="fa fa-pencil"></i></a>
-                                        <a href="#"><i class="fa fa-times"></i></a>
-                                   </td>
-                                </tr>
+                            <tbody class="cart-table-body">
+
+                                @if (count($cartItems) > 0)
+                  @foreach ($cartItems as $item)
+                    <tr>
+                      <td class="product-thumbnail">
+                        <a href="#"><img style="width: 80px" src="{{asset('storage/products/'.$item['photo'])}}" alt=""></a>
+                      </td>
+                      <td class="product-name"><a href="#">{{$item['name']}}</a></td>
+                      <td class="product-price-cart"><span class="amount">$ {{$item['price']}}</span></td>
+                      <td class="product-quantity">
+                        <div class="cart-plus-minus">
+                          <input data-cart-item-id="{{$item['id']}}"  class="cart-plus-minus-box" type="text" name="qtybutton" value="{{$item['quantity']}}">
+                        </div>
+                      </td>
+                      <td class="product-subtotal">$ {{$item['price']*$item['quantity']}}</td>
+                      <td class="product-remove">
+                        {{-- <a href="#"><i class="fa fa-pencil"></i></a> --}}
+                        <a data-cart-item-id="{{ $item['id'] }}" class="cart-remove-btn"><i class="fa fa-times"></i></a>
+                      </td>
+                    </tr>
+                  @endforeach
+                @else
+                  <tr>
+                    <td colspan="6" class="text-center">
+                      <h2>Your cart is currently empty.</h2>
+                    </td>
+                  </tr>
+                @endif
+
+
+
                             </tbody>
                         </table>
                     </div>
@@ -83,11 +64,12 @@
                         <div class="col-lg-12">
                             <div class="cart-shiping-update-wrapper">
                                 <div class="cart-shiping-update">
-                                    <a href="#">Continue Shopping</a>
+                                    <a href="{{route('frontoffice.home')}}">Continue Shopping</a>
                                 </div>
                                 <div class="cart-clear">
                                     <button>Update Shopping Cart</button>
-                                    <a href="#">Clear Shopping Cart</a>
+
+                                    <a class="clear-cart" href="#">Clear Shopping Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -156,16 +138,16 @@
                             <div class="title-wrap">
                                 <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
                             </div>
-                            <h5>Total products <span>$260.00</span></h5>
-                            <div class="total-shipping">
+                            <h5 >Total products <span class="total-price">${{$cartTotal}}</span></h5>
+                            {{-- <div class="total-shipping">
                                 <h5>Total shipping</h5>
                                 <ul>
                                     <li><input type="checkbox"> Standard <span>$20.00</span></li>
                                     <li><input type="checkbox"> Express <span>$30.00</span></li>
                                 </ul>
-                            </div>
-                            <h4 class="grand-totall-title">Grand Total  <span>$260.00</span></h4>
-                            <a href="#">Proceed to Checkout</a>
+                            </div> --}}
+                            <h4 class="grand-totall-title">Grand Total  <span class="grand-total-price">${{$cartTotal}}</span></h4>
+                            <a href="{{route('frontoffice.checkout')}}">Proceed to Checkout</a>
                         </div>
                     </div>
                 </div>
@@ -173,4 +155,7 @@
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+@include('frontoffice.library.CartJs')
 @endsection

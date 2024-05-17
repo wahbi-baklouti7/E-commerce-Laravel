@@ -29,16 +29,24 @@
     <script src="{{asset('plugins/datatables-buttons/js/buttons5.min.js')}}"></script>
     <script src="{{asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
     <script src="{{asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+    <script src="{{asset('plugins/toastr/toastr.min.js')}}"></script>
+    <script src="{{asset('plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+    <script src="{{asset('plugins/jquery-validation/additional-methods.min.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/bootstrap.min.js')}}"></script>
+
+
     <!-- AdminLTE App -->
     <script src="{{asset('dist/js/adminlte.min.js')}}"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="{{asset('dist/js/demo.js')}}"></script>
+    {{-- <script src="{{asset('dist/js/demo.js')}}"></script> --}}
+
 
 
 
 
     <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/myDatatabel.js')}}"></script>
+@yield('scripts')
     <!-- Page specific script -->
     <script>
         // TODO: the code inside the XML tags to detect the functionality, formats, style, patterns, and logics in use

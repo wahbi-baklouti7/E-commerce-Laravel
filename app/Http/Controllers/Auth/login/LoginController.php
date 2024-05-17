@@ -22,6 +22,7 @@ class LoginController extends Controller
 
         $credentials = $request->validated();
 
+        // dd($credentials);
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
             return redirect()->intended('dashboard');

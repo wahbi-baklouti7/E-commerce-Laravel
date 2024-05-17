@@ -6,6 +6,7 @@ use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
@@ -20,8 +21,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
-
+        // dd($lang);
+        // DB::table('categories')->delete();
+        // DB::statement("ALTER TABLE categories AUTO_INCREMENT = 0");
         $categories= Category::all();
         return view('backoffice.category.index', compact('categories'));
         // dd($categories);
@@ -32,6 +34,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+
         return view ('backoffice.category.create');
     }
 
@@ -52,11 +55,15 @@ class CategoryController extends Controller
 
         $filds['image'] = $imagePath;
         Category::create($filds);
+        // toastr()
+        // ->closeButton(true)
+        // ->success('Your subscription has been activated.');
 
 
+// toastr()->error('There was an issue terminating your account.');
         // dd($request->all());
-        return redirect()->route('category.index')
-        ->with('success', 'Category created successfully.');
+        return redirect()->route('category.index');
+        // ->with('success', 'Category created successfully.');
     }
 
     /**
@@ -92,7 +99,6 @@ class CategoryController extends Controller
         if($image){
             // Storage::delete($category->image);
             Storage::disk('public')->delete($category->image);
-
             $imagePath=$image->store('categories', 'public');
             $formField['image'] = $imagePath;
 
@@ -136,31 +142,21 @@ class CategoryController extends Controller
         // @unlink(public_path('storage/'.$category->image));
 
 
-        // dd($category->image);
         $result =$category->delete();
-        // dd($t);
-
+        toastr()->success('Your account has been re-verified.');
+        toastr()
+        ->closeOnHover(true)
+        ->closeDuration(10)
+        ->error('There was an issue submitting your feedback.');
         if($result){
-        //    return  response()->json([
-        //         'success'=>true,
-        //        'message' => 'Category Deleted Successfully.'
-        //    ]);
-
            return response()->json([
                'success'=>'success',
            ]);
         }
-
-
         return response()->json([
             'success'=>false,
             'message' => 'Something went wrong.'
         ]);
-        // $category->store()->delete();
-        // dd($category->image);
-
-        // return redirect()->route('category.index')
-        // ->with('success', 'Category Deleted Successfully.');
     }
 
 
@@ -179,6 +175,7 @@ class CategoryController extends Controller
     //     return back()->with('success', 'Category deleted successfully.');
 
     // }
+
 
     public function forceDelete($id){
 
@@ -210,4 +207,24 @@ class CategoryController extends Controller
 
 
 }
+
+public function deleteAll(){
+    // Category::truncate();
+    // Category::all()->delete();
+    DB::table('categories')->delete();
+    return back()->with('success', 'All Categories deleted successfully.');
+}
+public function restoreAll(){
+
+    Category::onlyTrashed()->restore();
+    return back()->with('success', 'All Categories restored successfully.');
+}
+
+public function deleteAllTrashed(){
+
+    Category::onlyTrashed()->forceDelete();
+    return back()->with('success', 'All Categories deleted successfully.');
+}
+
+
 }

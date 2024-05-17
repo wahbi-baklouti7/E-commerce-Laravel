@@ -8,13 +8,13 @@
 <x-breadcrumb text="Product Details"/>
 <div class="shop-area pt-100 pb-100">
     <div class="container">
-        <div class="row">
+       <div class="row">
             <div class="col-lg-6 col-md-6">
                 <div class="product-details">
                     <div class="product-details-img">
                         <div class="tab-content jump">
                             <div id="shop-details-1" class="tab-pane large-img-style">
-                                <img src="assets/img/product-details/large-1.jpg" alt="">
+                                <img src=" {{asset('assets/img/product-details/large-1.jpg')}}" alt="">
                                 <span class="dec-price">-10%</span>
                                 <div class="img-popup-wrap">
                                     <a class="img-popup" href="assets/img/product-details/b-large-1.jpg"><i class="pe-7s-expand1"></i></a>
@@ -51,9 +51,9 @@
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="product-details-content ml-70">
-                    <h2>Products Name Here</h2>
+                    <h2>{{$product->name}} </h2>
                     <div class="product-details-price">
-                        <span>$18.00 </span>
+                        <span>{{$product->price}} </span>
                         <span class="old">$20.00 </span>
                     </div>
                     <div class="pro-details-rating-wrap">

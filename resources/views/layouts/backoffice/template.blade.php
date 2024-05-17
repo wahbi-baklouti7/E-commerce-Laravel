@@ -2,7 +2,7 @@
 @include('layouts.backoffice.partials.head')
 <body class="hold-transition sidebar-mini">
     @php
-    $isLogin = Request::path() == 'login';
+    // $isLogin = Request::path() == 'login';
 @endphp
 <div class="wrapper">
   <!-- Navbar -->

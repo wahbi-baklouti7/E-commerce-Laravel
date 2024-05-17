@@ -9,82 +9,130 @@
 
 {{-- <x-breadcrumb text="Checkout"/> --}}
 <div class="checkout-area pt-95 pb-100">
+    @if (count($errors)>0)
+<div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h5><i class="icon fas fa-ban"></i> Errors!</h5>
+    <ul
+        class=""
+    >
+        @foreach ($errors->all() as $error)
+        <li class="nav-item">
+            <p>{{ $error }}</p>
+        </li>
+        @endforeach
+    </ul>
+
+</div>
+@endif
+@if (session('success'))
+
+<div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h5><i class="icon fas fa-check"></i>  {{ session('success') }}</h5>
+
+</div>
+
+
+
+@endif
     <div class="container">
+        <form action="{{ route('order.create') }}" method="POST">
+            @csrf
         <div class="row">
             <div class="col-lg-7">
                 <div class="billing-info-wrap">
                     <h3>Billing Details</h3>
+
                     <div class="row">
+
                         <div class="col-lg-6 col-md-6">
                             <div class="billing-info mb-20">
                                 <label>First Name</label>
-                                <input type="text">
+                                <input type="text" name="first_name" value="{{Auth::user()->first_name ?? ''}}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="billing-info mb-20">
                                 <label>Last Name</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="billing-info mb-20">
-                                <label>Company Name</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="billing-select mb-20">
-                                <label>Country</label>
-                                <select>
-                                    <option>Select a country</option>
-                                    <option>Azerbaijan</option>
-                                    <option>Bahamas</option>
-                                    <option>Bahrain</option>
-                                    <option>Bangladesh</option>
-                                    <option>Barbados</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="billing-info mb-20">
-                                <label>Street Address</label>
-                                <input class="billing-address" placeholder="House number and street name" type="text">
-                                <input placeholder="Apartment, suite, unit etc." type="text">
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="billing-info mb-20">
-                                <label>Town / City</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="billing-info mb-20">
-                                <label>State / County</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="billing-info mb-20">
-                                <label>Postcode / ZIP</label>
-                                <input type="text">
+                                <input  type="text" name="last_name" value="{{Auth::user()->last_name ?? ''}}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="billing-info mb-20">
                                 <label>Phone</label>
-                                <input type="text">
+                                <input type="text" name="phone" value="{{Auth::user()->phone ?? ''}}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="billing-info mb-20">
                                 <label>Email Address</label>
-                                <input type="text">
+                                <input type="text" name="email" value="{{Auth::user()->email ?? ''}}">
                             </div>
                         </div>
+                        {{-- <div class="col-lg-12">
+                            <div class="billing-info mb-20">
+                                <label>Company Name</label>
+                                <input type="text">
+                            </div>
+                        </div> --}}
+                        {{-- <div class="col-lg-12">
+                            <div class="billing-select mb-20">
+                                <label>Country</label>
+                                <input type="text" name="country">
+                            </div>
+                        </div> --}}
+                        <div class="col-lg-12">
+                            <div class="billing-info mb-20">
+                                <label>Address</label>
+                                <input class="billing-address" value="{{Auth::user()->address ?? ''}}" name="address" placeholder="Street address" type="text">
+                                {{-- <input placeholder="Apartment, suite, unit etc." type="text"> --}}
+                            </div>
+                        </div>
+                        {{-- <div class="col-lg-12">
+                            <div class="billing-info mb-20">
+                                <label>Town / City</label>
+                                <input type="text" name="city">
+                            </div>
+                        </div> --}}
+                        <div class="col-lg-6 col-md-6">
+                            <div class="billing-info mb-20">
+                                <label>State</label>
+                                <select name="city" required="required" id="ville-id">
+                                    <option selected value="Sfax">Sfax</option>
+                                    <option value="Ariana">Ariana</option
+                                        ><option value="Ben arous"> Ben arous</option>
+                                        <option value="Bizerte"> Bizerte</option><option value="Béja"> Béja</option>
+                                        <option value="Gabés"> Gabès</option><option value="Gafsa"> Gafsa</option>
+                                        <option value="Jendouba"> Jendouba</option>
+                                        <option value="Kairouan"> Kairouan</option>
+                                        <option value="Kasserine"> Kasserine</option>
+                                        <option value="Kebili"> Kébili</option>
+                                        <option value="La manouba"> La manouba</option>
+                                        <option value="Le kef"> Le kef</option>
+                                        <option value="Mahdia"> Mahdia</option>
+                                        <option value="Monastir"> Monastir</option>
+                                        <option value="Medenine"> Médenine</option>
+                                        <option value="Nabeul"> Nabeul</option>
+                                        <option value="Sidi bouzid"> Sidi bouzid</option>
+                                        <option value="Siliana"> Siliana</option>
+                                        <option value="Sousse"> Sousse</option>
+                                        <option value="Tataouine"> Tataouine</option>
+                                        <option value="Tozeur"> Tozeur</option>
+                                        <option value="Tunis"> Tunis</option>
+                                        <option value="zaghouan"> Zaghouan</option></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="billing-info mb-20">
+                                <label>Postcode</label>
+                                <input type="text" name="postal_code">
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="checkout-account mb-50">
+                {{-- </form> --}}
+                    {{-- <div class="checkout-account mb-50">
                         <input class="checkout-toggle2" type="checkbox">
                         <span>Create an account?</span>
                     </div>
@@ -175,7 +223,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="col-lg-5">
@@ -191,8 +239,9 @@
                             </div>
                             <div class="your-order-middle">
                                 <ul>
-                                    <li><span class="order-middle-left">Product Name  X  1</span> <span class="order-price">$329 </span></li>
-                                    <li><span class="order-middle-left">Product Name  X  1</span> <span class="order-price">$329 </span></li>
+                                    @foreach ($cartItems as $item)
+                                    <li><span class="order-middle-left">{{$item['name']}} X  {{$item['quantity']}}</span> <span class="order-price">$ {{$item['price'] * $item['quantity']}} </span></li>
+                                    @endforeach
                                 </ul>
                             </div>
                             <div class="your-order-bottom">
@@ -204,7 +253,7 @@
                             <div class="your-order-total">
                                 <ul>
                                     <li class="order-total">Total</li>
-                                    <li>$329</li>
+                                    <li>$ {{$cartTotal}}</li>
                                 </ul>
                             </div>
                         </div>
@@ -257,12 +306,18 @@
                             </div>
                         </div>
                     </div>
+
+                    {{-- <form action="{{route('order.create')}}" method="POST">
+                    @csrf --}}
                     <div class="Place-order mt-25">
-                        <a class="btn-hover" href="#">Place Order</a>
+                            <button class="btn-hover" type="submit" >Place Order</button>
                     </div>
+                {{-- </form> --}}
+
                 </div>
             </div>
         </div>
+    </form>
     </div>
 </div>
 @endsection

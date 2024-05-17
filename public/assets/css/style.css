@@ -192,7 +192,7 @@ ul {
   padding: 0;
 }
 
-/*-- 
+/*--
     - Common Classes
 -----------------------------------------*/
 .fix {
@@ -1235,7 +1235,7 @@ a:hover {
 }
 
 /***************************
-    Page section padding 
+    Page section padding
 ****************************/
 .ptb-0 {
   padding: 0;
@@ -1350,7 +1350,7 @@ a:hover {
 }
 
 /***************************
-    Page section margin 
+    Page section margin
 ****************************/
 .mtb-0 {
   margin: 0;
@@ -1424,7 +1424,7 @@ a:hover {
   margin: 290px 0;
 }
 
-/*-- 
+/*--
     - Input Placeholder
 -----------------------------------------*/
 input:-moz-placeholder,
@@ -1739,8 +1739,8 @@ textarea:focus {
   margin: 14px 0 0;
 }
 
-/*-- 
-    Scroll Up 
+/*--
+    Scroll Up
 -----------------------------------------*/
 #scrollUp {
   width: 50px;
@@ -7382,7 +7382,7 @@ a.default-btn {
 .product-wrap .product-img span {
   position: absolute;
   top: 12px;
-  right: 12px;
+  left: 12px;
   font-size: 13px;
   color: #fff;
   display: inline-block;
@@ -7397,6 +7397,12 @@ a.default-btn {
 .product-wrap .product-img span.purple {
   background-color: #a749ff;
 }
+.product-wrap .product-img span.red {
+    background-color: #ff4c4c;
+  }
+
+
+
 .product-wrap .product-img .hover-img {
   position: absolute;
   top: 0;
@@ -14873,6 +14879,25 @@ h3.cart-page-title {
 .your-order-area .Place-order > a:hover {
   background-color: #333;
 }
+.your-order-area .Place-order > button{
+    all:unset;
+    width: 100%;
+    background-color: #a749ff;
+    color: #fff;
+    display: block;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 1;
+    padding: 18px 20px;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 50px;
+    z-index: 9;
+  }
+  .your-order-area .Place-order > button:hover {
+    background-color: #333;
+    cursor: pointer;
+  }
 
 @media only screen and (max-width: 767px) {
   .checkout-area.pb-100 {

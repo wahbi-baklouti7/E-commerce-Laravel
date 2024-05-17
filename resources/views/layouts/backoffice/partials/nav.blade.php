@@ -5,8 +5,27 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
+      <div class="col-md-4">
+        <form action="{{route('language.switch')}}"  method="POST">
+            @csrf
+        <select class="form-control language changeLang">
+            {{-- {{session()->get('language')}} --}}
+            {{-- @dd(session()->get('language')) --}}
+            <option value="en" {{ session('language') == 'en' ? 'selected' : '' }}>
+                English
+                {{-- <img
+                src="{{asset('assets/icons/france.png')}}"
+                class="img-fluid rounded-top"
+                alt=""
+            /> --}}
+            </option>
+            <option value="fr" {{ session()->get('language') == 'fr' ? 'selected' : '' }}>French</option>
+            <option value="ar" {{ session()->get('language') == 'ar' ? 'selected' : '' }}>Arabic</option>
+        </select>
+    </form>
+    </div>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{route('backoffice.index')}}" class="nav-link">Home</a>
+        <a href="{{route('dashboard.index')}}" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">@yield('title')</a>
@@ -138,4 +157,16 @@
         </a>
       </li> --}}
     </ul>
+    {{-- <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"> --}}
+        {{-- <a class="dropdown-item" href="{{ route('logout') }}"
+           onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+            {{ __('Logout') }}
+            fffffffff
+        </a> --}}
+
+        
+    {{-- </div> --}}
   </nav>
+
+

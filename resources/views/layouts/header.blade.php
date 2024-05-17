@@ -1,4 +1,5 @@
 <header class="header-area header-padding-1 sticky-bar header-res-padding clearfix">
+    {{-- @dd($products) --}}
     <div class="container-fluid">
         <div class="row">
             <div class="col-xl-2 col-lg-2 col-md-6 col-4">
@@ -15,9 +16,16 @@
                             <li><a href={{route("frontoffice.home")}}>Home</i></a>
 
                             </li>
-                            <li><a href={{route('frontoffice.products')}}>Products</i> </a>
-
+                            <li><a href="{{route('frontoffice.products')}}">Products <i class="fa fa-angle-down"></i></a>
+                                <ul class="submenu">
+                                    @foreach ($categories as $category)
+                                    <li><a href="{{route('frontoffice.products' ,$category->name)}}">{{Str::title($category->name)}}</a></li>
+                                    @endforeach
+                                </ul>
                             </li>
+                            {{-- <li><a href={{route('frontoffice.products')}}>Products</i> </a>
+
+                            </li> --}}
 
 
                             <li><a href={{route('frontoffice.about')}}> About </a></li>
@@ -41,10 +49,24 @@
                         <a class="account-satting-active" href="#"><i class="pe-7s-user-female"></i></a>
                         <div class="account-dropdown">
                             <ul>
+
+                                @guest
                                 <li><a href={{route('frontoffice.loginRegister')}}>Login</a></li>
                                 <li><a href={{route('frontoffice.loginRegister')}}>Register</a></li>
                                 <li><a href="wishlist.html">Wishlist  </a></li>
-                                <li><a href={{route('frontoffice.myAccount')}}>my account</a></li>
+                                @endguest
+
+
+                                @auth
+                                <li><a href={{route('frontoffice.myAccount')}}>My Account</a></li>
+                                <form action="{{route('logout')}}" method="post">
+                                    @csrf
+                                    <li><button class="btn btn-light p-0 btn-sm " type="submit" >Logout</button></li>
+                                </form>
+                                {{-- <li><a href={{route('logout')}}>Logout</a></li> --}}
+
+
+                                @endauth
                             </ul>
                         </div>
                     </div>
@@ -54,16 +76,51 @@
                     <div class="same-style cart-wrap">
                         <button class="icon-cart">
                             <i class="pe-7s-shopbag"></i>
-                            <span class="count-style">02</span>
+
+                            <span class="count-style">
+
+                                @if (session()->has('cart'))
+                                {{count(session()->get('cart'))}}
+                                @else
+                                0
+                                @endif
+                                {{-- @if ($products)
+                                {{count($products)}}
+                                @else
+                                0
+                                @endif --}}
+
+
+                            </span>
                         </button>
                         <div class="shopping-cart-content">
                             <ul>
-                                <li class="single-shopping-cart">
+
+                                @if (session()->has('cart'))
+                                @foreach (session()->get('cart') as $product)
+                                <li data-cart-id="{{$product['id']}}" class="single-shopping-cart">
                                     <div class="shopping-cart-img">
-                                        <a href="#"><img alt="" src="{{asset('assets/img/cart/cart-1.png')}}"></a>
+                                        <a href="#"><img alt="" style="width: 80px"src="{{asset('storage/products/'.$product['photo'])}}"></a>
                                     </div>
                                     <div class="shopping-cart-title">
-                                        <h4><a href="#">T- Shart & Jeans </a></h4>
+                                        <h5 class="text-truncate" ><a href="#">{{Str::limit($product['name'], 15)}}</a></h5>
+                                        <h6>Qty: {{$product['quantity']}} </h6>
+                                        <span>$ {{$product['price']}}</span>
+                                    </div>
+                                    <div class="shopping-cart-delete">
+                                        <a class="small-cart-remove-btn"><i class="fa fa-times-circle"></i></a>
+                                    </div>
+                                </li>
+                                @endforeach
+                                @else
+
+                                @endif
+                                {{-- <li class="single-shopping-cart">
+                                    <div class="shopping-cart-img">
+                                        <a href="#"><img alt=""src="{{asset('assets/img/cart/cart-1.png')}}"></a>
+                                    </div>
+                                    <div class="shopping-cart-title">
+                                        <h4><a href="#"> </a></h4>
                                         <h6>Qty: 02</h6>
                                         <span>$260.00</span>
                                     </div>
@@ -83,11 +140,21 @@
                                     <div class="shopping-cart-delete">
                                         <a href="#"><i class="fa fa-times-circle"></i></a>
                                     </div>
-                                </li>
+                                </li> --}}
                             </ul>
                             <div class="shopping-cart-total">
-                                <h4>Shipping : <span>$20.00</span></h4>
-                                <h4>Total : <span class="shop-total">$260.00</span></h4>
+                                {{-- <h4>Shipping : <span>$20.00</span></h4> --}}
+                                @php
+                                    $cart= session()->get('cart');
+                                    $totalCart =0;
+                                if ($cart) {
+
+                                    foreach ($cart as $item) {
+                                        $totalCart += $item['price']*$item['quantity'];
+                                    }
+                                }
+                                @endphp
+                                <h4>Total : <span class="shop-total">$ {{Number::format($totalCart,3)}} </span></h4>
                             </div>
                             <div class="shopping-cart-btn btn-hover text-center">
                                 <a class="default-btn" href={{route('frontoffice.cart')}}>view cart</a>

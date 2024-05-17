@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3')}}" class="brand-link">
+    <a href="{{route('dashboard.index')}}" class="brand-link">
       <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">E-commerce</span>
     </a>
@@ -10,10 +10,17 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{auth()->check() ? asset('storage/users/'.auth()->user()->photo) : asset('storage/users/'.'default.png')  }}" class="img-circle elevation-2" alt="User Image">
+          {{-- <a href="#" class="d-block"> {{auth()->user()->name ?? 'Unkown User'}} </a>
+          <p>{{auth()->user()->email ?? 'Unkown Email'}}</p> --}}
+          {{-- <div class="info">
+            <a href="#" class="d-block"> {{auth()->user()->name ?? 'Unkown User'}} </a>
+            <p>{{auth()->user()->email ?? 'Unkown Email'}}</p>
+          </div> --}}
         </div>
         <div class="info">
           <a href="#" class="d-block"> {{auth()->user()->name ?? 'Unkown User'}} </a>
+          <p>{{auth()->user()->email ?? 'Unkown Email'}}</p>
         </div>
       </div>
 
@@ -36,10 +43,11 @@
                with font-awesome or any other icon font library -->
 
                <li class="nav-item menu-open">
-                <a href="{{route('backoffice.index')}}" class="nav-link active">
+                <a href="{{route('dashboard.index')}}" class="nav-link active">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
-                    Dashboard
+                    {{-- Dashboard --}}
+                    {{__('message.dashboard')}}
                     {{-- <i class="right fas fa-angle-left"></i> --}}
                   </p>
                 </a>
@@ -49,7 +57,8 @@
             <a href="{{route('category.index')}}" class="nav-link">
                 <i class=" nav-icon fas fa-solid fa-list"></i>
               <p>
-                Categories
+                {{-- Categories --}}
+                {{__('message.categories')}}
                 {{-- <i class="right fas fa-angle-left"></i> --}}
               </p>
             </a>
@@ -75,23 +84,55 @@
               </li>
             </ul> --}}
           </li>
-          <li class="nav-item">
-            <a href="{{route('auth.logout')}}" class="nav-link">
-                <i class="nav-icon fas fa-sign-out-alt" ></i><p>
-                Logout
-              </p>
-            </a>
-          </li>
-          {{-- <li class="nav-item">
-            <a href="widgets')}}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+
+
+           <li class="nav-item">
+            <a href="{{route('product.index')}}" class="nav-link">
+                <i class="nav-icon fa-solid fa-box-open"></i>
               <p>
-                Widgets
-                <span class="right badge badge-danger">New</span>
+                {{-- Products --}}
+                {{__('message.products') }}
               </p>
             </a>
           </li>
+
           <li class="nav-item">
+            <a href="{{route('order.index')}}" class="nav-link">
+                <i class="nav-icon fas fa-shopping-bag" ></i> 
+              <p>
+                {{-- Products --}}
+                {{__('message.orders') }}
+              </p>
+            </a>
+          </li>
+
+          @auth
+          <li class="nav-item">
+            <a href="{{route('logout')}}" class="nav-link">
+                <i class="nav-icon fas fa-sign-out-alt" ></i><p>
+                {{-- Logout --}}
+                {{__('message.logout')}}
+              </p>
+            </a>
+
+            {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form> --}}
+          </li>
+          @endauth
+
+          @guest
+
+          <li class="nav-item">
+            <a href="{{route('login')}}" class="nav-link">
+                <i class="nav-icon fas fa-sign-in-alt" ></i><p>
+                {{-- Logout --}}
+                {{__('message.login')}}
+              </p>
+            </a>
+          </li>
+          @endguest
+         {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>

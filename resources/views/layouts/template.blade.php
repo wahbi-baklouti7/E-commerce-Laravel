@@ -6,6 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>@yield('title')</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,6 +24,10 @@
     <link rel="stylesheet" href="{{asset('assets/css/plugins.css')}}">
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+
+    {{-- <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}"> --}}
+
+    @yield('styles')
 </head>
 
 <body>
@@ -36,7 +41,7 @@
 
 @include('layouts.header')
 @if ($currentRoute !==null  && $currentRoute !=='home')
-@include('layouts.breadcrumb')
+{{-- @include('layouts.breadcrumb') --}}
 @endif
 
 
@@ -56,23 +61,8 @@
 @include('layouts.footer')
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- All JS is here
 ============================================ -->
-
 <script src="{{asset('assets/js/vendor/modernizr-3.11.7.min.js')}}"></script>
 <script src="{{asset('assets/js/vendor/jquery-v3.6.0.min.js')}}"></script>
 <script src="{{asset('assets/js/vendor/jquery-migrate-v3.3.2.min.js')}}"></script>
@@ -83,6 +73,9 @@
 <script src="{{asset('assets/js/ajax-mail.js')}}"></script>
 <!-- Main JS -->
 <script src="{{asset('assets/js/main.js')}}"></script>
+
+
+@yield('scripts')
 
 </body>
 

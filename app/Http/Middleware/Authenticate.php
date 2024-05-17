@@ -16,10 +16,14 @@ class Authenticate extends Middleware
     {
         if($request->expectsJson()) {
 
+           
             return null;
         }
 
         Session::flash('error', 'You need to login first!');
-        return route('auth.login');
+        return route('frontoffice.loginRegister');
+        // return route('login');
     }
+
+
 }
