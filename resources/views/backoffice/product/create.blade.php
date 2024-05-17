@@ -3,7 +3,7 @@
 @section('content')
 <div class="card card-primary">
     <div class="card-header">
-      <h3 class="card-title">Add Category</h3>
+      <h3 class="card-title">{{__('message.add_product')}}</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
@@ -12,16 +12,16 @@
         <div class="card-body">
             <div class="row">
         <div class="form-group col-md-4">
-          <label for="name">Name</label>
+          <label for="name">{{__('message.name')}}</label>
           <input name="name" type="text" class="form-control" id="name" placeholder="Enter category name">
         </div>
         <div class="form-group col-md-4">
-            <label for="price">price</label>
+            <label for="price">{{__('message.price')}}</label>
             <input name="price" type="number" class="form-control" id="price" placeholder="Enter category name">
           </div>
 
           <div class="form-group col-md-4">
-            <label>Category</label>
+            <label>{{__('message.category')}}</label>
             <select name="category_id" class="form-control">
               <option>-- Choissessez une categorie --</option>
               @foreach ($categories as $category)
@@ -30,7 +30,7 @@
             </select>
           </div>
           <div class="form-group col-md-4">
-            <label for="description">Description</label>
+            <label for="description">{{__('message.description')}}</label>
             <input name="description" type="text" class="form-control" id="description" placeholder="Enter category name">
           </div>
 
@@ -39,7 +39,7 @@
           <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div> --}}
         <div class="form-group">
-          <label for="photo">Image</label>
+          <label for="photo">{{__('message.image')}}</label>
           <div class="input-group">
             <div class="custom-file">
               <input type="file" name="photo" class="custom-file-input" id="inputImage">
@@ -59,7 +59,7 @@
       <!-- /.card-body -->
 
       <div class="card-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">{{__('message.add')}}</button>
       </div>
     </form>
   </div>
