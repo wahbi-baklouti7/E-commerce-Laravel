@@ -3,8 +3,19 @@
 return [
 
     'products' => 'منتجات',
+    'orders'=>'طلبات',
     'logout' => 'تسجيل خروج',
+    'phone' => 'هاتف',
     'login' => 'تسجيل الدخول',
+    'orderId'=>'رقم الطلب',
+    'ordered_on' => 'طلبت في',
+    'customer' => 'عميل',
+    'items' => 'العناصر',
+    'amount' => 'المبلغ',
+    'status' => 'الحالة',
+    'city' => 'مدينة',
+    'address' => 'عنوان',
+
     'dashboard' => 'لوحة القيادة',
     'add_category' => 'إضافة فئة ',
     'categories' => 'فئات',
@@ -34,7 +45,7 @@ return [
     'delete_all' => 'حذف الكل  ',
     'restore_all' => 'استعادة الكل',
 
-    
+
     // 'dashboard' => 'لوحة القيادة',
     // 'dashboard' => 'لوحة القيادة',
 

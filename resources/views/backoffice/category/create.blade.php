@@ -23,7 +23,7 @@
 
 <div class="card card-primary">
     <div class="card-header">
-      <h3 class="card-title">Add Category</h3>
+      <h3 class="card-title"> {{__('message.add_category')}} </h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
@@ -31,7 +31,7 @@
       @csrf
         <div class="card-body">
         <div class="form-group">
-          <label for="name">Name</label>
+          <label for="name">{{__('message.name')}}</label>
           <input name="name" type="text" class="form-control" id="name" placeholder="Enter category name">
         </div>
         {{-- <div class="form-group">
@@ -39,14 +39,14 @@
           <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div> --}}
         <div class="form-group">
-          <label for="inputImage">Image</label>
+          <label for="inputImage">{{__('message.image')}}</label>
           <div class="input-group">
             <div class="custom-file">
               <input type="file" name="image" class="custom-file-input" id="inputImage">
-              <label  class="custom-file-label" for="inputImage">Choose file</label>
+              <label  class="custom-file-label" for="inputImage">{{__('message.choose_file')}}</label>
             </div>
             <div class="input-group-append">
-              <span class="input-group-text">Upload</span>
+              <span class="input-group-text"> {{__('message.upload')}} </span>
             </div>
           </div>
         </div>
@@ -58,7 +58,7 @@
       <!-- /.card-body -->
 
       <div class="card-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">{{__('message.add')}}</button>
       </div>
     </form>
   </div>

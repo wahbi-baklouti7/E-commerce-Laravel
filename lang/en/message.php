@@ -3,7 +3,19 @@
 return [
 
     'products' => 'Products',
+    'orders' => 'Orders',
     'dashboard'=>'Dashboard',
+'phone' => 'Phone',
+    'orderId'=>'Order Id',
+    'ordered_on' => 'Ordered on',
+    'customer' => 'Customer',
+    'items' => 'Items',
+    'amount' => 'Amount',
+    'status' => 'Status',
+    'city' => 'City',
+    'address' => 'Address',
+
+
     'logout'=>'Logout',
     'login' => 'Login',
     'categories'=>'Categories',

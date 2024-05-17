@@ -8,6 +8,11 @@
 
 
 
+        <form method="POST" action="{{ route('product.deleteAll') }}">
+            @method('DELETE')
+            @csrf
+            <button type="submit"  class="btn btn-danger delete-all-product-btn" > <i class="fas fa-trash"></i> {{__('message.delete_all')}}</button>
+        </form>
 <div class=" d-flex justify-content-end  mb-3">
     <a href="{{ route('product.create') }}" class="btn btn-primary text-end"> <i class="fas fa-plus"></i> {{__('message.add_product')}}</a>
 </div>
@@ -37,7 +42,7 @@
 <tr class="text-center" data-id="{{ $product->id }}">
   <td>{{ $product->name }}</td>
   {{-- <td>{{ $product->wahbi }}</td> --}}
-  <td><img src="{{ asset('storage/products/'.$product->photo) }}" width="80px" alt="{{ $product->name }}"></td>
+  <td><img src="{{ file_exists(public_path('storage/products/'.$product->photo)) ?  asset('storage/products/'.$product->photo)   : $product->photo }}" width="80px" alt="{{ $product->name }}"></td>
   <td>{{ Str::limit($product->description,20) }}</td>
   <td>{{ $product->category->name ?? "test" }}</td>
   <td>{{ $product->price }}</td>
@@ -57,7 +62,7 @@
             @method('DELETE')
             @csrf --}}
             {{-- <a href="{{ route('product.destroy', $product->id) }}" class="btn btn-danger"> <i class="fas fa-trash"></i> Delete</a> --}}
-            <button type="submit"  class="btn btn-danger delete-product-btn" > <i class="fas fa-trash"></i> {{__('message.delete')}}</button>
+            <button type="button"  class="btn btn-danger delete-product-btn" > <i class="fas fa-trash"></i> {{__('message.delete')}}</button>
 
         {{-- </form> --}}
     {{-- </div> --}}

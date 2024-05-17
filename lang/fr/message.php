@@ -2,6 +2,15 @@
 
 return [
     'products' => 'Produits',
+    'orderId'=>'ID commande',
+    'ordered_on' => 'Commandé le',
+    'customer' => 'Client',
+    'items' => 'Articles',
+    'amount' => 'Montant',
+    'status' => 'Statut',
+    'city' => 'Ville',
+    'address' => 'Adresse',
+'phone' => 'Téléphone',
     'dashboard' => 'tableau de bord',
     'logout' => 'Se déconnecter',
     'login' => 'Se connecter',
