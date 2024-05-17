@@ -20,10 +20,10 @@
         <div class="input-group">
           <div class="custom-file">
             <input type="file" name="image" class="custom-file-input" value="{{ $category->image }}" id="inputImage">
-            <label  class="custom-file-label" for="inputImage">Choose file</label>
+            <label  class="custom-file-label" for="inputImage"> {{__('message.choose_file')}} </label>
           </div>
           <div class="input-group-append">
-            <span class="input-group-text">Upload</span>
+            <span class="input-group-text"> {{__('message.upload')}} </span>
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@
     <!-- /.card-body -->
 
     <div class="card-footer">
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary">{{__('message.update')}}</button>
     </div>
   </form>
   @endsection

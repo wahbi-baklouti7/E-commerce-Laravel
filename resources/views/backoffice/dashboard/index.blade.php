@@ -9,77 +9,95 @@
     <div class="container-fluid">
       <!-- Small boxes (Stat box) -->
       <div class="row">
-        <div class="col-lg-3 col-6">
+        <div class="col-lg-3 col-6 ">
           <!-- small box -->
-          <div class="small-box bg-info">
-            <div class="inner">
-              <h3>150</h3>
+          <div class="small-box bg-gradient-danger ps-4  pt-3">
+            <div class="inner row">
+                <div class="col-8">
+              <h3> {{$totalOfEarnings}} <span class="fs-2" >DT</span> </h3>
 
-              <p>New Orders</p>
+              <p class="fs-4">Total Earnings</p>
+            </div>
+              <div class=" col-4">  <i class="fas fa-money-bill fa-3x" ></i> </div>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-success">
-            <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+            <!-- small box -->
+            <div class="small-box text-white bg-gradient-warning  ps-4 pt-3">
+              <div class="inner row">
+                  <div class="col-8">
+                <h3>{{$numOfCustomers}}</h3>
 
-              <p>Bounce Rate</p>
+                <p class="fs-4">Users</p>
+              </div>
+                <div class=" col-4"> <i class="fa-solid fa-user-group fa-3x"></i> </div>
+              </div>
+              
             </div>
-            <div class="icon">
-              <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-warning">
-            <div class="inner">
-              <h3>44</h3>
 
-              <p>User Registrations</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-6">
-          <!-- small box -->
-          <div class="small-box bg-danger">
-            <div class="inner">
-              <h3>65</h3>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-gradient-success ps-4 pt-3">
+              <div class="inner row">
+                  <div class=" col-8">
+                <h3>{{$numOfOrders}}</h3>
 
-              <p>Unique Visitors</p>
+                <p class="fs-4">Orders</p>
+              </div>
+                <div class=" col-4">  <i class="fas fa-shopping-bag fa-3x" ></i> </div>
+              </div>
+
             </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
-        </div>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-gradient-info ps-4 pt-3">
+              <div class="inner row">
+                  <div class="bg-warnign col-8">
+                <h3> {{$numOfProducts}} </h3>
+
+                <p class="fs-4">Products</p>
+              </div>
+                <div class=" col-4"><i class="fa-solid fa-box fa-3x"></i> </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-gradient-primary ps-4 pt-3">
+              <div class="inner row">
+                  <div class="bg-warnign col-8">
+                <h3> {{$numOfCategories}} </h3>
+
+                <p class="fs-4">Categoreis</p>
+              </div>
+                <div class=" col-4">  <i class="fa-solid fa-list fa-3x"></i></div>
+              </div>
+
+            </div>
+          </div>
+
+
+
         <!-- ./col -->
       </div>
       <!-- /.row -->
       <!-- Main row -->
-      <div class="row">
+      {{-- <div class="row"> --}}
         <!-- Left col -->
-        
+
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
 
         <!-- right col -->
-      </div>
+      {{-- </div> --}}
       <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
   </section>
