@@ -38,7 +38,7 @@
 
 <tr class="text-center" data-id="{{ $category->id }}">
   <td>{{ $category->name }}</td>
-  <td><img src="{{ file_exists(public_path('storage/'.$category->image)) ? asset('storage/'.$category->image):$category->image }}" width="80px" alt="{{ $category->name }}"></td>
+  <td><img src="{{asset('storage/'.$category->image)}}" width="80px" alt="{{ $category->name }}"></td>
   <td>{{ $category->created_at }}</td>
   <td>
 

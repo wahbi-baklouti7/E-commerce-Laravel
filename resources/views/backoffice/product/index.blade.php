@@ -42,7 +42,7 @@
 <tr class="text-center" data-id="{{ $product->id }}">
   <td>{{ $product->name }}</td>
   {{-- <td>{{ $product->wahbi }}</td> --}}
-  <td><img src="{{ file_exists(public_path('storage/products/'.$product->photo)) ?  asset('storage/products/'.$product->photo)   : $product->photo }}" width="80px" alt="{{ $product->name }}"></td>
+  <td><img src="{{ asset('storage/products/'.$product->photo)}}" width="80px" alt="{{ $product->name }}"></td>
   <td>{{ Str::limit($product->description,20) }}</td>
   <td>{{ $product->category->name ?? "test" }}</td>
   <td>{{ $product->price }}</td>
