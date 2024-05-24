@@ -58,7 +58,6 @@
   <td>
     {{-- <div > --}}
         {{-- <form method="POST" action="{{ route('product.destroy', $product->id) }}">
-            <form method="POST">
             @method('DELETE')
             @csrf --}}
             {{-- <a href="{{ route('product.destroy', $product->id) }}" class="btn btn-danger"> <i class="fas fa-trash"></i> Delete</a> --}}
@@ -80,7 +79,11 @@
 
 @endsection
 
+{{-- <script src="{{asset('js/myDatatabel.js')}}"></script> --}}
 
+@section('scripts')
+@include('backoffice.library.DataTabelJs')
+@endsection
 
 
 

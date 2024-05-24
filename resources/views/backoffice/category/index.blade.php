@@ -39,6 +39,7 @@
 <tr class="text-center" data-id="{{ $category->id }}">
   <td>{{ $category->name }}</td>
   <td><img src="{{asset('storage/'.$category->image)}}" width="80px" alt="{{ $category->name }}"></td>
+  <td><img src="{{Storage::url($category->image)}}" width="80px" alt="{{ $category->name }}"></td>
   <td>{{ $category->created_at }}</td>
   <td>
 
@@ -53,7 +54,7 @@
             @method('DELETE')
             @csrf --}}
             {{-- <a href="{{ route('category.destroy', $category->id) }}" class="btn btn-danger"> <i class="fas fa-trash"></i> Delete</a> --}}
-            <button type="submit"  class="btn btn-danger delete-category-btn" > <i class="fas fa-trash"></i> {{__('message.delete')}}</button>
+            <button type="button"  class="btn btn-danger delete-category-btn" > <i class="fas fa-trash"></i> {{__('message.delete')}}</button>
 
         {{-- </form> --}}
     {{-- </div> --}}
@@ -69,7 +70,13 @@
   </div>
 
 
+
+
 @endsection
 
+
+@section('scripts')
+@include('backoffice.library.DataTabelJs')
+@endsection
 
 

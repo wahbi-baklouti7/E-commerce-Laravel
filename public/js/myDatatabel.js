@@ -1,7 +1,8 @@
 $(document).ready(function () {
+    alert("js loaded !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     $(".delete-category-btn").on("click", deleteCategory);
 
-    $(".delete-product-btn").on("click", deleteProduct);
+    // $(".delete-product-btn").on("click", deleteProduct);
     $("example1").DataTable({
         processing: true,
         serverSide: true,
@@ -35,25 +36,28 @@ function deleteCategory() {
 }
 
 
-function deleteProduct() {
-    const paren = $(this).parent().parent();
-    const id = paren.data("id");
-    $.ajax({
-        url: `/admin/product/${id}`,
-        type: "DELETE",
-        data: {
-            id: id,
-        },
-        headers: {
-            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-        },
-        success: function (data) {
-            let table = new DataTable("#example1");
-            table.row(paren).remove().draw();
-            toastr.success('Product Deleted Successfully', 'Success');
-        },
-    });
-}
+// function deleteProduct() {
+//     const paren = $(this).parent().parent();
+//     const id = paren.data("id");
+//     $.ajax({
+
+//         url: `/admin/product/${id}`,
+//         type: "DELETE",
+//         data: {
+//             // id: id,
+//         },
+//         headers: {
+//             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+
+//         },
+
+//         success: function (data) {
+//             let table = new DataTable("#example1");
+//             table.row(paren).remove().draw();
+//             toastr.success('Product Deleted Successfully', 'Success');
+//         },
+//     });
+// }
 
 
 
