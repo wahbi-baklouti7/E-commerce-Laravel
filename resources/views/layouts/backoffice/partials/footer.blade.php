@@ -45,7 +45,7 @@
 
 
     <script src="{{asset('js/app.js')}}"></script>
-<script src="{{asset('js/myDatatabel.js')}}"></script>
+{{-- <script src="{{asset('js/myDatatabel.js')}}"></script> --}}
 @yield('scripts')
     <!-- Page specific script -->
     <script>

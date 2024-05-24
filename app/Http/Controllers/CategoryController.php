@@ -138,16 +138,16 @@ class CategoryController extends Controller
     {
 
 
-        // Storage::disk('public')->delete($category->image);
+        Storage::disk('public')->delete($category->image);
         // @unlink(public_path('storage/'.$category->image));
 
 
         $result =$category->delete();
-        toastr()->success('Your account has been re-verified.');
-        toastr()
-        ->closeOnHover(true)
-        ->closeDuration(10)
-        ->error('There was an issue submitting your feedback.');
+        // toastr()->success('Your account has been re-verified.');
+        // toastr()
+        // ->closeOnHover(true)
+        // ->closeDuration(10)
+        // ->error('There was an issue submitting your feedback.');
         if($result){
            return response()->json([
                'success'=>'success',
@@ -222,7 +222,15 @@ public function restoreAll(){
 
 public function deleteAllTrashed(){
 
+   // delete with image
+
+    $categories = Category::onlyTrashed()->get();
+    foreach ($categories as $category) {
+        Storage::disk('public')->delete($category->image);
+    }
     Category::onlyTrashed()->forceDelete();
+
+    // Storage::disk('public')->delete($category->image);
     return back()->with('success', 'All Categories deleted successfully.');
 }
 

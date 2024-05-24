@@ -201,7 +201,6 @@ success: function (response) {
         // console.log(shoopingCart)
         // alert(id)
         $.ajax({
-
             type: "post",
             url:`/cart/addToCart/${id}`,
             headers: {

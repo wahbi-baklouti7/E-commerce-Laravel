@@ -21,7 +21,10 @@ class ProductController extends Controller
     public function index()
     {
         //
-
+        // dd(asset('storage/products'));
+        // dd(public_path());
+        // dd(storage_path());
+        // return public_path();
         $products= Product::all();
 
         return view('backoffice.product.index',compact('products'));
@@ -49,11 +52,15 @@ class ProductController extends Controller
 
         $image = $request->file('photo');
 
+
         if($image){
 
             $imageName= time().uniqid().".".$image->getClientOriginalExtension();
             $formFields['photo']=$imageName;
-            $image->storeAs('products',$imageName,'public');
+            // Storage::disk('public')->put('products/'.$imageName, file_get_contents($image->getRealPath()));
+            // $image->storeAs('products',$imageName,'public');
+            $image->move(public_path('storage/products'),$imageName);
+            // $image->store('products',$imageName,'public');
 
         }else{
             $formFields['image']="default-product.png";
@@ -132,11 +139,12 @@ class ProductController extends Controller
         $image= $product->photo;
 
 
-
+        $result = false; #change this
+        $product->delete();
         if(file_exists(public_path('storage/products/'.$image))){
 
             Storage::disk('public')->delete("products/".$image);
-          $result=   $product->delete();
+             $result=   $product->delete();
         }
 
 

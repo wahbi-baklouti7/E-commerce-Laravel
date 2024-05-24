@@ -48,7 +48,7 @@ class CartController extends Controller
 
     private function getCart(){
 
-        return session()->get('cart');
+    return session()->get('cart',[]);
     }
     private function calcCartTotal($cart){
 
