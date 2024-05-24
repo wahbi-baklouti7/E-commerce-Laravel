@@ -4,6 +4,17 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,7 +77,6 @@
     </style>
 </head>
 <body>
-    {{-- @dd($orderProducts) --}}
     <div class="container">
         <div class="header">
             <h1>ESPS Store</h1>
@@ -107,12 +117,7 @@
                         <th colspan="3">Subtotal</th>
                         <td>{{ $order->total_price }} TND</td>
                     </tr>
-                    {{-- @if ($order->discount > 0)
-                        <tr>
-                            <th colspan="3">Discount</th>
-                            <td>fff</td>
-                        </tr>
-                    @endif --}}
+
                     <tr>
                         <th colspan="3">Shipping Cost</th>
                         <td>8 TND</td>

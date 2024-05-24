@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CustomerOrderEmail;
 use App\Mail\SampleEmail;
 use App\Models\Order;
 use App\Models\OrderLigne;
@@ -29,7 +30,30 @@ class OrderController extends Controller
         ];
 
 
-        Mail::to($recipient)->send(new SampleEmail($data['order'],$data['orderProducts']));
+        Mail::to($recipient)->send(new SampleEmail($data['order'],$data['orderProducts'],'emails.customer'));
+
+        return response()->json(['message' => 'Email sent successfully to' . $recipient]);
+    }
+
+    public function sendCustomerEmail(){
+
+
+        // $recipient = 'bakloutiwahbi@gmail.com';
+        $order=Order::latest()->first();
+        $recipient = $order->email;
+        $orderProducts = $order->orderLignes;
+        // $product = $orders->product;
+
+        // dd($orderProducts,$product);
+
+        // dd($orders->address);
+        $data = [
+        'order'=>$order,
+        'orderProducts'=>$orderProducts,
+        ];
+
+
+        Mail::to($recipient)->send(new CustomerOrderEmail($data['order'],$data['orderProducts']));
 
         return response()->json(['message' => 'Email sent successfully to' . $recipient]);
     }
@@ -102,6 +126,7 @@ class OrderController extends Controller
         session()->forget('cart');
 
        $this-> sendEmail();
+       $this->sendCustomerEmail();
         return  redirect()->route('frontoffice.orderStatus')
         ->with([
             // 'orderId' => $orderId,

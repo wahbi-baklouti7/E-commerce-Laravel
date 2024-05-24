@@ -9,35 +9,21 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SampleEmail extends Mailable
+class CustomerOrderEmail extends Mailable
 {
     use Queueable, SerializesModels;
-
-
-    // public $name;
-    // public $message;
 
     /**
      * Create a new message instance.
      */
-    // public function __construct($name,$message)
-    // {
-    //     //
-    //     $this->name= $name;
-    //     $this->message= $message;
-
-    // }
 
     public $order;
     public $orderProducts;
-    public function __construct($order,$data)
+    public function __construct($order, $orderProducts)
     {
         //
-
-        $this->order= $order;
-        $this->orderProducts= $data;
-
-
+        $this->order = $order;
+        $this->orderProducts = $orderProducts;
     }
 
     /**
@@ -46,7 +32,7 @@ class SampleEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Order Placed',
+            subject: 'Thank You for Your Order! ESPS Store',
         );
     }
 
@@ -56,13 +42,10 @@ class SampleEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            // view: 'emails.sample',
-            view: 'emails.sample',
+            view: 'emails.customer',
             with: [
                 'orders' => $this->order,
                 'orderProducts' => $this->orderProducts
-                // 'name' => $this->name,
-                // 'message' => $this->message
             ]
         );
     }

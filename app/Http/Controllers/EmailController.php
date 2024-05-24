@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CustomerOrderEmail;
 use App\Mail\SampleEmail;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -9,7 +10,8 @@ use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
 {
-    //
+
+
 
 
 
